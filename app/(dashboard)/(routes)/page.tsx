@@ -6,7 +6,6 @@ export default function Home() {
       <h1 className="flex display-center items-center gap-5">
         Welcome to the Homepage
       </h1>
-      <UserButton afterSignOutUrl="/" />
     </div>
   );
 }
