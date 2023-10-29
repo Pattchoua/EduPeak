@@ -8,6 +8,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
+//Course Model
 model Course {
   id String @id @default(uuid())
   userId String 
@@ -17,10 +18,13 @@ model Course {
   price Float?
   isPublished Boolean @default(false)
 
+
   categoryId String?
   category Category? @relation(fields: [categoryId], references: [id])
 
+  chapters Chapter[]
   attachments Attachment[]
+  purchases Purchase[]
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -28,13 +32,14 @@ model Course {
  @@index([categoryId])
 }
 
+//Category Model
 model Category {
     id String @id @default(uuid())
     name String @unique
     courses Course[] 
 }
 
-
+// Attachment Model
 model Attachment {
   id String @id @default(uuid())
   name String 
@@ -47,4 +52,84 @@ model Attachment {
   updatedAt DateTime @updatedAt
 
   @@index([courseId])
+}
+
+// Chapter Model
+model Chapter {
+  id String @id @default(uuid())
+  title String 
+  description String? @db.Text
+  videoUrl String? @db.Text
+  position Int
+  isPublished Boolean @default(false)
+  isFree Boolean @default(false)
+
+  muxData MuxData?
+
+  courseId String
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  userProgress UserProgress[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+@@index([courseId])
+}
+
+// MuxData Model
+model MuxData {
+id String @id @default(uuid())
+assetId String 
+playbackId String? 
+  
+chapterId String @unique
+chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+}
+
+//userProgress Model
+model UserProgress {
+  id String @id @default(uuid())
+  userId String 
+
+  chapterId String 
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade) 
+
+  isCompleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+@@index([chapterId])
+@@unique([userId, chapterId])
+}
+
+
+// Purchase model
+
+//userProgress Model
+model Purchase {
+  id String @id @default(uuid())
+  userId String 
+
+  courseId String
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+@@index([courseId])
+}
+
+//StripeCustomer Model
+model StripeCustomer {
+  id String @id @default(uuid())
+  userId String @unique
+  StripeCustomerId String @unique
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 }
