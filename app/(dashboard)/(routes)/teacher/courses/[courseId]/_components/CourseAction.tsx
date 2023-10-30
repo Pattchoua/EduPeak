@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 
 import { Trash } from "lucide-react";
 import toast from "react-hot-toast";
+import { useConfettiStore } from "@/hooks/useConfettiStore";
 
 // Defining prop types for ChapterAction component
 interface CourseActionProps {
@@ -23,6 +24,7 @@ const CourseAction = ({
   isPublished,
 }: CourseActionProps) => {
   const router = useRouter();
+  const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
   // Handler function for publish/unpublish button click
@@ -31,16 +33,13 @@ const CourseAction = ({
       setIsLoading(true);
 
       if (isPublished) {
-        await axios.patch(
-          `/api/courses/${courseId}/unpublish`
-        );
+        await axios.patch(`/api/courses/${courseId}/unpublish`);
         toast.success("Course unpublished");
         router.refresh();
       } else {
-        await axios.patch(
-          `/api/courses/${courseId}/publish`
-        );
+        await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published");
+        confetti.onOpen();
         router.refresh();
       }
     } catch (error) {
