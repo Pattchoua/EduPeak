@@ -11,11 +11,11 @@ import {
   FcLibrary,
   FcLike,
   FcGallery,
+  FcSalesPerformance,
 } from "react-icons/fc";
 
 import { IconType } from "react-icons";
 import CategoryItem from "./CategoryItem";
-
 
 interface CategoriesProps {
   items: Category[];
@@ -31,11 +31,10 @@ const iconMap: Record<Category["name"], IconType> = {
   "Certification Preparation": FcLibrary,
   "Personal Development": FcPositiveDynamic,
   "Language Learning": FcGlobe,
+  "Specialized Industries": FcSalesPerformance,
 };
 
 const Categories = ({ items }: CategoriesProps) => {
-  
-
   return (
     <div className="flex items-center gap-x-2 overflow-x-auto pb-2">
       {items.map((item) => (

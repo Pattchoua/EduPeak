@@ -1,4 +1,4 @@
-const  { PrismaClient } = require("@prisma/client")
+const { PrismaClient } = require("@prisma/client");
 
 const database = new PrismaClient();
 
@@ -15,6 +15,7 @@ async function main() {
         { name: "Certification Preparation" },
         { name: "Personal Development" },
         { name: "Language Learning" },
+        { name: "Specialized Industries" },
       ],
     });
     console.log("Sucess");

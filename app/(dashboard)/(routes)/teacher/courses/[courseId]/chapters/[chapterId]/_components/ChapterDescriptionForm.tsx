@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Chapter, Course } from "@prisma/client";
+import { Chapter} from "@prisma/client";
 import { Editor } from "@/components/shared/editor";
 import { Preview } from "@/components/shared/preview";
 
