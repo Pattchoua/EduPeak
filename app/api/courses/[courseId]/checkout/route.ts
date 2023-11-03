@@ -12,8 +12,8 @@ export async function POST(
   try {
     const user = await currentUser();
 
-    if (!user || !user.id || user.emailAddresses?.[0]?.emailAddress) {
-      return new NextResponse("Unauthorized", { status: 401 });
+    if (!user || !user.id || !user.emailAddresses?.[0]?.emailAddress) {
+      return new NextResponse("Unauthorized API Error", { status: 401 });
     }
 
     const course = await db.course.findUnique({
@@ -79,7 +79,7 @@ export async function POST(
     const session = await stripe.checkout.sessions.create({
       customer: stripeCustomer.StripeCustomerId,
       line_items,
-      mode:"payment",
+      mode: "payment",
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?success = 1`,
       cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/courses/${course.id}?canceled = 1`,
       metadata: {
