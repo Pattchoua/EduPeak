@@ -40,30 +40,27 @@ export const ChaptersList = ({
     setchapters(items);
   }, [items]);
 
-const onDragEnd = (result: DropResult) => {
-    if(!result.destination) return;
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) return;
 
     const items = Array.from(chapters);
     const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem)
+    items.splice(result.destination.index, 0, reorderedItem);
 
-    const startIndex = Math.min(result.source.index, result.destination.index)
-    const endIndex = Math.max(result.source.index, result.destination.index)
+    const startIndex = Math.min(result.source.index, result.destination.index);
+    const endIndex = Math.max(result.source.index, result.destination.index);
 
     const updatedChapters = items.slice(startIndex, endIndex + 1);
 
-    setchapters(items)
+    setchapters(items);
 
     const bulkUpdateData = updatedChapters.map((chapter) => ({
-        id: chapter.id,
-        position:items.findIndex((item) => item.id === chapter.id)
-    }))
+      id: chapter.id,
+      position: items.findIndex((item) => item.id === chapter.id),
+    }));
 
-    onReorder(bulkUpdateData)
-
-
-}
-
+    onReorder(bulkUpdateData);
+  };
 
   if (!isMounted) {
     return null;
@@ -76,7 +73,7 @@ const onDragEnd = (result: DropResult) => {
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {chapters.map((chapter, index) => (
               <Draggable
-                Key={chapter.id}
+                key={chapter.id}
                 draggableId={chapter.id}
                 index={index}
               >
