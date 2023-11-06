@@ -4,6 +4,11 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import CourseSidebar from "./_component/CourseSidebar";
 import CourseNavbar from "./_component/CourseNavbar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Courses | EduPeak",
+};
 
 const CustomCourseLayout = async ({
   children,
@@ -50,10 +55,7 @@ const CustomCourseLayout = async ({
   return (
     <div className="h-full">
       <div className="h-[80px] md:pl-56 fixed insert-y-0 w-full z-50">
-        <CourseNavbar 
-        course={course}
-        progressCount={progressCount}
-        />
+        <CourseNavbar course={course} progressCount={progressCount} />
       </div>
       <div className="hidden md:flex h-full w-80 flex-col fixed inset-y-0 z-50">
         <CourseSidebar course={course} progressCount={progressCount} />

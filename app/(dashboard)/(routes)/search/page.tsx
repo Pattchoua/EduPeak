@@ -7,6 +7,11 @@ import { getCourses } from "@/actions/getCourses";
 import Categories from "./_components/Categories";
 import SearchInput from "@/components/shared/SearchInput";
 import CoursesList from "@/components/shared/CoursesList";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Courses | EduPeak",
+}
 
 
 interface SearchPageProps {

@@ -14,6 +14,8 @@ import { CourseEnrollButton } from "./_components/CourseEnrollButton";
 import { Separator } from "@/components/ui/separator";
 import CourseProgressButton from "@/components/shared/CourseProgressButton";
 
+
+
 type ChapterIdPageProps = {
   params: {
     courseId: string;

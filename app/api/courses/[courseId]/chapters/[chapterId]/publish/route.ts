@@ -1,5 +1,4 @@
 import { db } from "@/lib/db";
-import { isTeacher } from "@/lib/teacher";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
@@ -19,7 +18,7 @@ export async function PATCH(
   try {
     // Authenticate user
     const { userId } = auth();
-    if (!userId || isTeacher(userId)) {
+    if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
     // Verify user is the owner of the course

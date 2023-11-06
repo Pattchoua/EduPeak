@@ -1,5 +1,11 @@
 import { db } from "@/lib/db";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Courses | EduPeak",
+}
+
 
 const CustomCoursePage = async ({
   params,

@@ -3,6 +3,11 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import DataCard from "./_components/DataCard";
 import Chart from "./_components/Chart";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Analytics | EduPeak",
+}
 
 const AnalyticsPage = async () => {
   const { userId } = auth();
