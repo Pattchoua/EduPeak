@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'EduPeak',
   description: 'EduPeak is your gateway to a world of knowledge and achievement. Explore a diverse marketplace of courses, handcrafted by expert educators. Students can purchase courses, track their progress, and earn certifications. Teachers have the power to create, price, and structure their courses, fostering interactive learning experiences. Our user-friendly platform combines affordability, quality, and convenience, making education accessible to all. Join EduPeak and embark on your journey to success!',
+  icons: {
+    icon: "/assets/images/site-logo.png",
+  },
 }
 
 export default function RootLayout({
